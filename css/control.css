@@ -1,0 +1,39 @@
+@import url(./font.css);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+body,
+html {
+  user-select: none;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg: #161616;
+
+  /* Social login button gradiant */
+  --start: #3d2e43;
+  --end: #5d4234;
+  --degree: 135deg;
+}
+.mt20 {
+  margin-top: 100px;
+}
+.bg16 {
+  background-color: var(--bg);
+}
+.pointer {
+  cursor: pointer;
+}
+.row {
+  display: flex;
+  column-gap: 5%;
+}
+.vertical-center {
+  display: grid;
+  margin-top: 60px;
+  height: 150px;
+  font-family: karlaregular;
+  font-size: large;
+  place-items: center;
+  place-content: center;
+}

@@ -1,0 +1,77 @@
+.container {
+  background-color: var(--bg);
+  height: 100%;
+  color: white;
+  display: grid;
+  place-items: center;
+}
+.intro {
+  text-align: center;
+}
+h1.title {
+  font-family: mregular;
+  text-transform: capitalize;
+}
+.subtitle {
+  color: #8b8888;
+  font-family: mlight;
+}
+.form-group {
+  margin-top: 50px;
+}
+.input-group {
+  background-color: #222222;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding-right: 5px;
+}
+.input-group:not(:last-of-type) > i {
+  color: #888888;
+}
+.input-group > input {
+  background: transparent;
+  border: none;
+  padding: 15px 10px 15px 10px;
+  width: 90%;
+  text-align: start;
+  outline: none;
+  font-size: medium;
+  color: white;
+  font-family: karlaregular;
+}
+.input-group > input:last-of-type {
+  text-align: start;
+  width: 90%;
+}
+.input-group:last-of-type {
+  background: linear-gradient(45deg, #9a3c93, #f52d2e, #f59654);
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: left;
+}
+.form-input,
+.input-group {
+  width: 300px;
+}
+
+.socialbtn {
+  display: flex;
+  justify-content: start;
+  background-color: #222222;
+  width: 280px;
+  font-family: karlalight;
+  padding: 15px 10px 15px 10px;
+  cursor: pointer;
+  border: 2px solid var(--start);
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.socialbtn > i {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.socialbtn:hover {
+  background-color: var(--start);
+  transition: 200ms background-color ease-in-out;
+}
