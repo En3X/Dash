@@ -5,6 +5,7 @@
 ?>
 <a href="./gamepage.php">Go To Game Page</a>
 <a href="./login.php">Go To Login Page</a>
+<a href="./signup.php">Go To Signup Page</a>
 <br>
 <br>
 

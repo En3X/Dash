@@ -6,6 +6,13 @@
     if (isset($_SESSION['user'])) {
         header('location: index.php');
     }
+    function showError($err){
+        ?>
+<script>
+showErrorInPage('<?php echo $err?>');
+</script>
+<?php
+    }
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +38,7 @@
             <h3 class="subtitle">
                 Choose from multiple game library and host or join events of your choice
             </h3>
+            <?php include './partials/errors.php' ?>
             <div class="row">
                 <div class="formSection">
                     <form autocomplete="off" action="#" method="post">
@@ -79,28 +87,16 @@
                 <p class="pointer">
                     Forgot password?
                 </p>
-                <p class="pointer">
-                    Signup instead!
+                <p class="pointer" onclick="window.open('./signup.php','_self')">
+                    Signup instead
                 </p>
             </div>
 
         </div>
     </div>
 </body>
-<script>
-function togglePwd(self) {
-    pwd = document.querySelector('#password');
-    self = document.querySelector('#togglepwd');
-    console.log("hello");
-    if (pwd.type == "password") {
-        pwd.type = "text";
-        self.classList = "fa fa-eye";
-    } else {
-        pwd.type = "password";
-        self.classList = "fa fa-eye-slash";
-    }
-}
-</script>
+<script src="./js/signup.js"></script>
+<script src="./js/error.js"></script>
 
 </html>
 
@@ -111,16 +107,17 @@ function togglePwd(self) {
         global $username,$password;
         $username = $_POST['username'];
         $password = $_POST['password'];
+        
         if (empty($username) || empty($password)) {
             showError("Username and password are required");
         }else{
             // Mysql check if password or username exist
             $mysqli = $conn;
-            $query = "SELECT * from users where `users`.`email` = '$username' and `users`.`password` = '$password'";
+            $query = "SELECT * from users where `users`.`email` = '$username'";
 
             if($data = $mysqli->query($query)){
                 if ($data->num_rows != 1) {
-                    showError("Username or password incorrect");
+                    showError("Username does not exist");
                 }else{
                     while ($user = $data->fetch_assoc()) {
                         $uid = $user['uid'];
@@ -128,15 +125,16 @@ function togglePwd(self) {
                         $email = $user['email'];
                         $pwd = $user['password'];
                     }
-                    $mainUser = new User($uid,$name,$email,$pwd);
-                    $_SESSION['user'] = serialize($mainUser);
-                    header('location: index.php');
+                    if(password_verify($password,$pwd)){
+                        $mainUser = new User($uid,$name,$email,$pwd);
+                        $_SESSION['user'] = serialize($mainUser);
+                        showError('Login successful. Redirecting!!!');
+                        header('refresh:0;url=index.php');   
+                    }else{
+                        showError('Password for the username does not match. ');
+                    }
                 }
             }
         }
-    }
-
-    function showError($err){
-        echo 'Error: '.$err;
     }
 ?>

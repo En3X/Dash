@@ -1,0 +1,12 @@
+.errcontainer {
+  font-family: mlight;
+  padding: 10px;
+  background: var(--end);
+  color: white;
+}
+.hidden {
+  display: none;
+}
+.shown {
+  display: block;
+}
