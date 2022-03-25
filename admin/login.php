@@ -1,7 +1,7 @@
 <?php
     require '../db/connection.php';
     session_start();
-    if (isset($_SESSION['aid']) && isset($_SESSION['ausername'])) {
+    if (isset($_SESSION['admin'])) {
         header('location: ./index.php');
     }
 ?>
@@ -12,7 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/login.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <title>Admin Login</title>
 </head>
 
@@ -44,15 +43,11 @@
                 <div class="form-section">
                     <div class="form-group">
                         <input required class="form-input" type="text" name="username" placeholder="John Doe">
-                        <span class="material-icons-outlined">
-                            account_circle
-                        </span>
+                        <i class="fa fa-user"></i>
                     </div>
                     <div class="form-group">
                         <input required class="form-input" type="password" name="password" placeholder="Password">
-                        <span class="material-icons-outlined">
-                            password
-                        </span>
+                        <i class="fa fa-lock"></i>
                     </div>
                     <div class="hidden">
                         <input type="submit" id="loginBtn" name="login" value="1">

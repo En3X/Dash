@@ -1,8 +1,17 @@
 <?php
     require '../db/connection.php';
+    require './admin.php';
+    require './services.php';
+    $adminData;
     session_start();
     if (isset($_SESSION['admin_login_error'])) {
         unset($_SESSION['admin_login_error']);
+    }
+    if (!isset($_SESSION['admin'])) {
+        login($conn);
+    }else {
+        global $adminData;
+        $adminData = unserialize($_SESSION['admin']);
     }
 ?>
 
@@ -12,22 +21,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <title>Admin | Dashboard</title>
+    <link rel="stylesheet" href="./css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-    <?php
-        if (!isset($_SESSION['aid']) && !isset($_SESSION['ausername'])) {
-            login($conn);
-        }
-    ?>
-    <a href="./login.php">
-        Go to admin login
-    </a>
-    <a href="./logout.php">
-        Logout
-    </a>
+    <?php include('./partial/sidebar.php')?>
+    <section class="mainSection">
+        <?php include "./partial/dashboard.php"?>
+    </section>
 </body>
 <script>
 function sendToLogin(error) {
@@ -35,6 +38,7 @@ function sendToLogin(error) {
     document.querySelector('#sendError').click()
 }
 </script>
+<script src="./js/index.js"></script>
 
 </html>
 <?php
@@ -60,6 +64,10 @@ function sendToLogin(error) {
                                 $ausername = $admin['username'];
                                 $aid = $admin['aid'];
                                 $aname = $admin['name'];
+                                global $adminData;
+                                $adminData = new Admin($aid,$aname,$ausername);
+                                $adminCopy = serialize($adminData);
+                                $_SESSION['admin'] = $adminCopy;
                                 $isLoggedIn = true;
                                 break;
                             }else {
@@ -69,13 +77,7 @@ function sendToLogin(error) {
                     }
                     if (!$isLoggedIn) {
                         redirectToLogin("Username or password does not exist.");
-                    }else{
-                        $_SESSION['aid'] = $aid;
-                        $_SESSION['ausername'] = $ausername;
-                        $_SESSION['aname'] = $aname;
-                        // echo $aname;
                     }
-                    
                 }
             }
         }else{
@@ -85,6 +87,6 @@ function sendToLogin(error) {
     function redirectToLogin($err)
     {
         $_SESSION['admin_login_error'] = $err;
-        header('location:./admin/login.php');
+        header('location:./login.php');
     }
 ?>

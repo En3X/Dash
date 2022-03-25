@@ -1,0 +1,25 @@
+@import url(./control.css);
+
+:root {
+  --bg: #454d55;
+  --sidebar-bg: #343a40;
+  --primary: #17a2b8;
+  --success: #28a745;
+  --warning: #8637ee;
+  --danger: #dc3545;
+  --border: #999999;
+}
+body,
+html,
+* {
+  margin: 0;
+  padding: 0;
+}
+.mainSection {
+  width: calc(100% - 250px);
+  position: relative;
+  top: 0;
+  left: 250px;
+  height: 100%;
+  background: var(--bg);
+}

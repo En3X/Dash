@@ -14,6 +14,12 @@ html {
   --start: #3d2e43;
   --end: #5d4234;
   --degree: 135deg;
+
+  --primary: #17a2b8;
+  --success: #28a745;
+  --warning: #8637ee;
+  --danger: #dc3545;
+  --border: #999999;
 }
 .mt20 {
   margin-top: 20px;
