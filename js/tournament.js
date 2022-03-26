@@ -26,6 +26,7 @@ function changePrivacy(elem) {
 $("#host").on("click", function () {
   postData = getPostData();
   $.post("./db/post_tournament.php", postData).done((data) => {
+    alert(data);
     window.location.href = "./index.php";
   });
 });

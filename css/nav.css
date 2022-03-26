@@ -1,0 +1,79 @@
+@import url(./control.css);
+:root {
+  --nav-list: #9294a3;
+}
+
+nav {
+  position: sticky;
+  z-index: 9999 !important;
+  top: 0;
+  background: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #333;
+}
+.firstsection {
+  align-items: center;
+  width: 80%;
+  padding: 10px 20px 10px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.logo {
+  width: 20px;
+}
+.logo > img {
+  width: 100%;
+}
+.navlist {
+  display: flex;
+  color: var(--nav-list);
+  column-gap: 40px;
+  align-items: center;
+}
+.item-group {
+  cursor: pointer;
+}
+.item-group:hover {
+  color: aliceblue;
+}
+.item-group > i {
+  margin-right: 5px;
+}
+.activeUsers {
+  color: white;
+  text-align: center;
+  background: rgba(252, 94, 5, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+.iconsection {
+  color: #9293a8;
+  align-items: center;
+  display: flex;
+  column-gap: 15px;
+}
+.icon-group {
+  background: #24272e;
+  padding: 10px;
+  width: 15px;
+  box-shadow: 0px 0px 10px #24272e;
+  border-radius: 5px;
+  cursor: POINTER;
+}
+.usersection {
+  cursor: pointer;
+  background-color: #272a2f;
+  padding: 20px;
+  width: 10%;
+  color: white;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.pp {
+  width: 20px;
+}
+.pp > img {
+  width: 100%;
+}

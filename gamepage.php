@@ -1,10 +1,13 @@
 <?php
     require './db/connection.php';
-    require './entity/Game.php';
+    require './entity.php';
+    session_start();
+
 ?>
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./css/game.css">
@@ -12,6 +15,8 @@
 </head>
 
 <body>
+    <?php include './partials/nav.php'?>
+
     <?php include './partials/alert.php'?>
     <?php
         if (isset($_POST['error']) && isset($_POST['sendError'])) {

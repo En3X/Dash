@@ -1,14 +1,20 @@
 <?php
     class Tournament
     {
-        public $tid,$gid,$hostedby,$hostdate,$startdate,$status;
-        function __construct($tid,$gid,$hostedby,$hostdate,$startdate,$status) {
+        public $tid,$gid,$uid,$name,
+        $dis,$status,$month,$day,$hour,$min,$sec;
+        function __construct($tid,$gid,$uid,$name,$dis,$status,$month,$day,$hour,$min,$sec) {
             $this->tid = $tid;
             $this->gid=$gid;
-            $this->hostedby = $hostedby;
-            $this->hosteddate=$hosteddate;
-            $this->startdate = $startdate;
+            $this->uid = $uid;
+            $this->name=$name;
+            $this->dis = $dis;
             $this->status=$status;
+            $this->month = $month;
+            $this->day=$day;
+            $this->hour = $hour;
+            $this->min=$min;
+            $this->sec = $sec;
         }
     }
 ?>

@@ -52,6 +52,12 @@
                     Tournaments
                 </span>
             </div>
+            <div id="addArticle" class="iconset">
+                <i class="fa fa-plus"></i>
+                <span>
+                    Add Article
+                </span>
+            </div>
             <div class="iconset" onclick="window.open('./logout.php','_self')">
                 <i class="fa fa-sign-out"></i>
                 <span>

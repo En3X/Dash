@@ -33,6 +33,7 @@ redirectToGame();
 
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
 
     <link rel="stylesheet" href="./css/tournament.css">
     <meta charset="UTF-8">
@@ -42,6 +43,8 @@ redirectToGame();
 </head>
 
 <body>
+    <?php include './partials/nav.php'?>
+
     <!-- 
         This form is to redirect to gamepage with data
      -->
@@ -100,7 +103,7 @@ redirectToGame();
                 <button id="host" class="saveTournament kmedium">
                     Host Tournament
                 </button>
-                <button onclick="window.location.href='./index.php'" class="saveTournament kmedium">
+                <button onclick="history.back()" class="saveTournament kmedium">
                     Cancel
                 </button>
             </div>

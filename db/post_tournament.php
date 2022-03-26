@@ -24,15 +24,12 @@
             )";
 
             if ($mysqli->query($query)) {
-                http_response_code(201);
                 echo "Hosted a new tournament";
             }else{
-                http_response_code(400);
                 echo "Tournament hosting failed";
             }
         }
     } catch (Exception $e) {
-        http_response_code(400);
         echo "There was error trying to host tournament";
         echo $e->getmessage();
     }
