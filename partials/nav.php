@@ -19,7 +19,7 @@ if (isset($_SESSION['user'])) {
             <div onclick="window.location.href='./tournamentlist.php'" class="item-group kbold">
                 <i class="fa fa-gamepad"></i> Tournaments
             </div>
-            <div class="item-group kbold">
+            <div onclick="window.location.href='./shop.php'" class="item-group kbold">
                 <i class="fa fa-shopping-cart"></i> Shop
             </div>
 
@@ -33,7 +33,7 @@ if (isset($_SESSION['user'])) {
                 <i class="fa fa-plus"></i>
             </div>
             <div class="icon-group">
-                <i class="fa fa-bell"></i>
+                <i class="fa fa-cog"></i>
             </div>
             <div class="icon-group" onclick="window.location.href='./logout.php'">
                 <i class="fa fa-sign-out"></i>
