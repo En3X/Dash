@@ -1,0 +1,43 @@
+main {
+  height: 100%;
+  justify-content: flex-start;
+  column-gap: 20px;
+}
+:root {
+  --input: #44444b;
+}
+.termscard {
+  height: 300px;
+  overflow: scroll;
+  overflow-x: hidden;
+}
+.customList {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+.listitem {
+  margin-bottom: 10px;
+}
+.listitem::before {
+  content: "\2022";
+}
+.topupcard {
+  width: 109%;
+}
+.topupform {
+  margin-top: 20px;
+}
+
+.form-group > input {
+  background-color: var(--input);
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 300px;
+  margin: 10px auto;
+  color: white;
+}
+button.saveTournament {
+  margin: 0;
+}

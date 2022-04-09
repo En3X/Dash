@@ -1,6 +1,7 @@
 <?php
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
+    $user->refresh($conn);
 }else{
     header('location: ./about.php');
 }
@@ -29,13 +30,13 @@ if (isset($_SESSION['user'])) {
 
         </div>
         <div class="iconsection">
-            <div class="icon-group" onclick="window.location.href='./gamepage.php'">
+            <div title="Host tournament" class="icon-group" onclick="window.location.href='./gamepage.php'">
                 <i class="fa fa-plus"></i>
             </div>
-            <div class="icon-group">
-                <i class="fa fa-cog"></i>
+            <div class="icon-group" title="Add Balance" onclick="window.location.href='./topup.php'">
+                <i class="fa fa-money"></i>
             </div>
-            <div class="icon-group" onclick="window.location.href='./logout.php'">
+            <div title="Log out" class="icon-group" onclick="window.location.href='./logout.php'">
                 <i class="fa fa-sign-out"></i>
             </div>
         </div>

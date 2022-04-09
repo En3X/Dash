@@ -87,7 +87,7 @@ showErrorInPage('<?php echo $info?>');
             $password = password_hash($password,PASSWORD_DEFAULT);
 
             try {
-                $query = "INSERT into users(name,email,password) values ('$name','$username','$password')";
+                $query = "INSERT into users(name,email,password,balance) values ('$name','$username','$password',0)";
                 // See if username already exist'
                 if ($users = $conn->query("SELECT * From users where `users`.`email` = '$username'")) {
                     if ($users->num_rows > 0) {

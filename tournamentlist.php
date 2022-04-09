@@ -20,22 +20,8 @@
     <?php include './partials/nav.php' ?>
     <main>
         <section class="sidebar">
-            <div class="card usercard">
-                <div class="profile">
-                    <div class="image">
-                        <img src="./img/default.png" alt="">
-                    </div>
-                    <div class="text">
-                        <div class="name kbold">
-                            <?php echo $user->name ?>
-                        </div>
-                        <div class="email kregular">
-                            <?php echo $user->email?>
-                        </div>
-                    </div>
-                </div>
+            <?php include './partials/usercard.php'?>
 
-            </div>
             <div class="card gamecard">
                 <div class="card-title">
                     Recent Games

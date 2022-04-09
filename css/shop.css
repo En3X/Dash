@@ -11,6 +11,10 @@ main {
 .tab {
   margin-bottom: 20px;
 }
+.buttonsgroup {
+  display: flex;
+  justify-content: space-between;
+}
 .searchbar {
   background-color: #fff;
   padding: 10px;
@@ -61,6 +65,96 @@ select.gameSelect {
 .saveTournament > i {
   margin-right: 5px;
 }
+.secondary {
+  background: transparent;
+  border: 1px solid #4b56af;
+}
 .saveTournament {
   margin-top: 5px;
+}
+.shopSection {
+  margin-bottom: 80px;
+  width: 100%;
+  display: grid;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin: none;
+  grid-template-columns: repeat(5, minmax(200px, 1fr));
+}
+.shopSection::-webkit-scrollbar {
+  width: 5px;
+}
+
+.shopSection::-webkit-scrollbar-track {
+  background: black; /* color of the tracking area */
+}
+.shopSection::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 20px; /* roundness of the scroll thumb */
+}
+@media screen and (max-width: 1000px) {
+  .shopSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+  }
+}
+.shoppingcard {
+  background-color: #2b2c30;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  margin: 10px auto;
+  width: 200px;
+  cursor: pointer;
+  height: 230px;
+}
+.shoppingcard > .img {
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.shoppingcard > .img > img {
+  width: 100%;
+  height: 100%;
+  -webkit-user-drag: none;
+}
+.shoppingcard > .itemdesc {
+  opacity: 0;
+  position: relative;
+  bottom: 230;
+  color: white;
+  background-color: rgba(68, 68, 75, 0.5);
+  width: 100%;
+  height: 100%;
+}
+.itemdesc > .wrapper {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #2b2c30;
+}
+.price {
+  color: #ccc;
+  font-size: small;
+}
+.wrapper > div {
+  padding: 10px;
+}
+.gametag {
+  background: #ff580f;
+  width: fit-content;
+  padding: 2px;
+  font-size: x-small;
+  border-radius: 20px;
+}
+.shoppingcard:hover > .itemdesc {
+  transition: all 200ms ease;
+  opacity: 1;
+}
+.itemname {
+  text-transform: capitalize;
+}
+.item {
+  width: 100%;
 }

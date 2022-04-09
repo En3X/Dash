@@ -126,9 +126,10 @@ showErrorInPage('<?php echo $err?>');
                         $name = $user['name'];
                         $email = $user['email'];
                         $pwd = $user['password'];
+                        $balance = $user['balance'];
                     }
                     if(password_verify($password,$pwd)){
-                        $mainUser = new User($uid,$name,$email,$pwd);
+                        $mainUser = new User($uid,$name,$email,$pwd,$balance);
                         $_SESSION['user'] = serialize($mainUser);
                         showError('Login successful. Redirecting!!!');
                         header('refresh:0;url=index.php');   
