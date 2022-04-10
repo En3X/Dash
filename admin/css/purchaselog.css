@@ -1,0 +1,37 @@
+.table {
+  display: grid;
+  width: 100%;
+  color: #fff;
+}
+.tablerow {
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  padding: 10px;
+}
+.tablehead {
+  background-color: var(--primary);
+}
+
+.tablebody {
+  background-color: var(--success);
+}
+tr {
+  background-color: var(--primary);
+}
+tr:not(:first-of-type) {
+  background-color: var(--danger);
+}
+tr:last-of-type {
+  background-color: var(--primary);
+}
+td,
+th {
+  padding: 10px;
+  text-align: center;
+}
+table {
+  width: 100%;
+  color: white;
+  border-spacing: 0px;
+}

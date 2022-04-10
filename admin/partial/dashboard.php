@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="./css/dashboard.css">
+<title>Admin | Dashboard</title>
 <div class="dashboard">
     <div class="header kbold">
         Dashboard
@@ -8,10 +9,10 @@
             <div class="card-body">
                 <div class="card-body-text">
                     <div class="kmedium cardNumber">
-                        150
+                        <?php echo getNumOrder($conn)?>
                     </div>
                     <div class="title kregular">
-                        New Orders
+                        Total Purchase
                     </div>
                 </div>
                 <div class="card-icon">

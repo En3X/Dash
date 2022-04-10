@@ -17,31 +17,41 @@
 
 <html lang="en">
 
-<head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin | Dashboard</title>
-    <link rel="stylesheet" href="./css/admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+        <link rel="stylesheet" href="./css/admin.css">
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
 
-<body>
-    <?php include('./partial/sidebar.php')?>
-    <section class="mainSection">
-        <?php include "./partial/article.php" ?>
-        <?php include "./partial/dashboard.php"?>
-    </section>
-</body>
-<script>
-function sendToLogin(error) {
-    document.querySelector('#errorInput').value = error;
-    document.querySelector('#sendError').click()
-}
-</script>
-<script src="./js/index.js"></script>
+    <body>
+        <?php include('./partial/sidebar.php')?>
+        <section class="mainSection">
+            <?php include "./partial/article.php" ?>
+            <?php
+            if (!isset($_GET['page'])) {
+               include "./partial/dashboard.php";
+            }else{
+                $page = $_GET['page'];
+                if ($page == "purchaselog") {
+                    include "./partial/purchaselogs.php";
+                }
+            }
+        ?>
+        </section>
+    </body>
+    <script>
+    function sendToLogin(error) {
+        document.querySelector('#errorInput').value = error;
+        document.querySelector('#sendError').click()
+    }
+    </script>
+    <script src="./js/index.js"></script>
 
 </html>
 <?php

@@ -18,4 +18,13 @@
     }
     }
 
+
+    function getNumOrder($conn){
+        $sql = "Select * from purchaselog";
+        if ($data = $conn->query($sql)) {
+            return $data->num_rows;
+        }else{
+            return 0;
+        }
+    }
 ?>

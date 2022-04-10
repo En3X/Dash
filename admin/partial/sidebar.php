@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="sidebaricons">
-            <div class="iconset">
+            <div onclick="window.location.href='./index.php'" class="iconset">
                 <i class="fa fa-dashboard"></i>
                 <span>
                     Dashboard
@@ -34,7 +34,7 @@
                     User Reports
                 </span>
             </div>
-            <div class="iconset">
+            <div onclick="window.location.href='./index.php?page=purchaselog'" class="iconset">
                 <i class="fa fa-info-circle"></i>
                 <span>
                     Logs

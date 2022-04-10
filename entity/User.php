@@ -45,5 +45,24 @@
                 $_SESSION['user'] = serialize($this);
             }
         }
+
+        public function hasBalance($check)
+        {
+            if ($this->balance >= $check) {
+                return true;
+            }
+            return false;
+        }
+
+
+        public function updateBalance($conn,$nb)
+        {
+            $q = "Update users set balance=$nb where uid=$this->uid";
+            if ($conn->query($q)) {
+                return true;
+            }else{
+                throw new Exception("Sorry there was some error processing your request. We will try and fix it soon. Until then, please try using some other feature of our webappp.", 1);
+            }
+        }
     }
 ?>

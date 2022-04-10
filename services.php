@@ -127,4 +127,33 @@ function getFilteredItems($conn,$minprice,$maxprice,$gamesfilter){
         return $items;
     }
 }
+
+function getItem($mysqli,$id){
+    $q = "Select * from shop where itemid=$id";
+    if ($data=$mysqli->query($q)) {
+        if ($data->num_rows < 1) {
+            return "404";
+        }
+        $item = "";
+        while ($row = $data->fetch_assoc()) {
+            $gid = $row['gameid'];
+            $name = $row['name'];
+            $price = $row['price'];
+            $img = $row['img'];
+            $item = new Item($id,$gid,$name,$price,$img);
+            return $item;
+        }
+    }
+}
+
+function createPurchaseLog($conn,$i,$u){
+    $sql = "insert into purchaselog(uid,username,itemid,itemname,price)
+    values($u->uid,'$u->name',$i->id,'$i->name',$i->price)
+    ";
+    if ($conn->query($sql)) {
+        return true;
+    }else{
+        return false;
+    }
+}
 ?>
