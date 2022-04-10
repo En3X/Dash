@@ -219,7 +219,8 @@
                         <?php echo $purchaseStatus?>
                     </span>
                 </span>
-                <i onclick="window.location.href='./index.php'" id="close-modal" class="fa fa-times"></i>
+                <i style="cursor:pointer" onclick="window.location.href='./index.php'" id="close-modal"
+                    class="fa fa-times"></i>
             </div>
             <div id="purchasemsg" class="popupbody kregular">
                 <?php echo $purchaseMessage ?>

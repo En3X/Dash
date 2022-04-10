@@ -28,49 +28,55 @@
             </section>
             <section class="maincontent">
                 <div class="card topupcard">
-                    <div class="card-title">
-                        Add Balance
+                    <div>
+                        <div class="card-title">
+                            Add Balance
+                        </div>
+                        <div class="dis kregular">
+                            By adding the balance, you accept our terms of services. We accept visa, credit and master
+                            cards.
+                        </div>
+                        <div class="topupform">
+                            <form action="" method="post">
+                                <div class="form-group">
+                                    <div class="dis kbold">
+                                        Topup Balance (USD)
+                                    </div>
+                                    <input required type="number" min=0 name="balance" placeholder="e.g. 1000">
+                                </div>
+                                <div class="form-group">
+                                    <div class="dis kbold">
+                                        Cardholder's Name
+                                    </div>
+                                    <input type="text" name="holdername" placeholder="e.g. John Doe">
+                                </div>
+                                <div class="form-group">
+                                    <div class="dis kbold">
+                                        Card number
+                                    </div>
+                                    <input type="text" name="cardnumber" placeholder="XXXX XXXX XXXX XXXX">
+                                </div>
+                                <div class="form-group">
+                                    <div class="dis kbold">
+                                        Expiry Date
+                                    </div>
+                                    <input type="text" name="expdate" placeholder="DD/MM">
+                                </div>
+                                <div class="form-group">
+                                    <div class="dis kbold">
+                                        CVV
+                                    </div>
+                                    <input type="text" name="cvv" placeholder="XXXX">
+                                </div>
+                                <button id="host" name="addbalance" type="submit" class="saveTournament kmedium">
+                                    Add Balance
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="dis kregular">
-                        We accept visacard, mastercard, credit/debit cards
-                    </div>
-                    <div class="topupform">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <div class="dis kbold">
-                                    Topup Balance (USD)
-                                </div>
-                                <input required type="number" min=0 name="balance" placeholder="e.g. 1000">
-                            </div>
-                            <div class="form-group">
-                                <div class="dis kbold">
-                                    Cardholder's Name
-                                </div>
-                                <input type="text" name="holdername" placeholder="e.g. John Doe">
-                            </div>
-                            <div class="form-group">
-                                <div class="dis kbold">
-                                    Card number
-                                </div>
-                                <input type="text" name="cardnumber" placeholder="XXXX XXXX XXXX XXXX">
-                            </div>
-                            <div class="form-group">
-                                <div class="dis kbold">
-                                    Expiry Date
-                                </div>
-                                <input type="text" name="expdate" placeholder="DD/MM">
-                            </div>
-                            <div class="form-group">
-                                <div class="dis kbold">
-                                    CVV
-                                </div>
-                                <input type="text" name="cvv" placeholder="XXXX">
-                            </div>
-                            <button id="host" name="addbalance" type="submit" class="saveTournament kmedium">
-                                Add Balance
-                                <i class="fa fa-plus"></i>
-                            </button>
-                        </form>
+                    <div class="imgtopup">
+                        <img src="./img/cards.png" alt="">
                     </div>
                 </div>
             </section>

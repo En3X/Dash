@@ -24,11 +24,18 @@ main {
 }
 .topupcard {
   width: 109%;
+  display: flex;
 }
 .topupform {
   margin-top: 20px;
 }
-
+.topupcard > div {
+  width: 50%;
+}
+.imgtopup > img {
+  -webkit-user-drag: none;
+  width: 100%;
+}
 .form-group > input {
   background-color: var(--input);
   border: none;
