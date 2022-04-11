@@ -1,6 +1,10 @@
 <?php
     $tournaments = getAllTournament($conn);
-    $featured = $tournaments[count($tournaments)-1];
+    if (count($tournaments) < 1) {
+        $featured = new Tournament(null,null,null,"No tournaments hosted yet","Please host a tournament to get featured tournament","404 Error",12,12,12,12,12);
+    }else{
+        $featured = $tournaments[count($tournaments)-1];
+    }
 ?>
 <div class="card featuredcard">
     <div class="textsection">
@@ -43,10 +47,34 @@
                 <div class="csub mregular">Sec</div>
             </div>
         </div>
-        <button id="host" class="saveTournament kmedium">
+        <?php
+            if ($featured->uid != null) {
+                if ($user->hasJoinedTournament($conn,$featured->tid)) {
+                    ?>
+        <button type="submit" onclick="window.location.href='./tournamentdetail.php?id=<?php echo $featured->tid?>'"
+            id="host" class="joinedbtn kmedium">
+            <i class="fa fa-check"></i>
+            Joined
+        </button>
+        <?php
+                }else{
+                    ?>
+        <button onclick="window.location.href='./tournamentdetail.php?id=<?php echo $featured->tid?>'" id="host"
+            class="saveTournament kmedium">
             Join Tournament
             <i class="fa fa-plus"></i>
         </button>
+        <?php
+                }
+            }else{
+                ?>
+        <button onclick="window.location.href='./gamepage.php'" id="host" class="saveTournament kmedium">
+            Host Tournament
+            <i class="fa fa-plus"></i>
+        </button>
+        <?php
+            }
+        ?>
     </div>
     <div class="banner-img" style="
         background: url(<?php echo fetchBanner($conn,$featured)?>);

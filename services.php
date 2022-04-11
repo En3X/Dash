@@ -17,8 +17,31 @@
         return 0;
     }
     }
-function getTournaments($mysqli,$uid,$limit)
+    function getAllTournament($mysqli)
 {
+    $tournaments = array();
+    $query = "select * from tournament";
+    if ($data=$mysqli->query($query)) {
+        foreach ($data as $value) {
+            $tid = $value['tid'];
+            $gid = $value['gid'];
+            $uid = $value['uid'];
+            $name = $value['name'];
+            $dis = $value['description'];
+            $status = $value['status'];
+            $month = $value['month'];
+            $day = $value['day'];
+            $hour = $value['hour'];
+            $min = $value['min'];
+            $sec = $value['sec'];
+            $t = new Tournament($tid,$gid,$uid,$name,
+            $dis,$status,$month,$day,$hour,$min,$sec);
+            array_push($tournaments,$t);
+        }
+        return $tournaments;
+    }
+}
+function getTournaments($mysqli,$uid,$limit){
     $tournaments = array();
     $query = "select name from tournament where uid=$uid limit $limit";
     if ($data=$mysqli->query($query)) {
@@ -32,9 +55,32 @@ function getTournaments($mysqli,$uid,$limit)
         return $tournaments;
     }
 }
-
-function getGames($conn,$limit)
-{
+function getTournamentById($mysqli,$tid){
+    $query = "select * from tournament where tid=$tid";
+    if ($data=$mysqli->query($query)) {
+        if ($data->num_rows > 0) {
+            foreach ($data as $value) {
+                $name = $value['name'];
+                $tid = $value['tid'];
+                $gid = $value['gid'];
+                $description = $value['description'];
+                $status = $value['status'];
+                $month = $value['month'];
+                $day = $value['day'];
+                $hour = $value['hour'];
+                $min = $value['min'];
+                $sec = $value['sec'];
+                $uid = $value['uid'];
+                $t = new Tournament($tid,$gid,$uid,$name,$description,$status
+                ,$month,$day,$hour,$min,$sec);
+                return $t;
+            }
+        }else{
+            return "404";
+        }
+    }
+}
+function getGames($conn,$limit){
     $games = array();
     $query = "select * from games  limit $limit";
     if ($data=$conn->query($query)) {
@@ -52,8 +98,7 @@ function getGames($conn,$limit)
     }
 }
 
-function getArticles($mysqli)
-{
+function getArticles($mysqli){
     $articles = array();
     $query = "select * from article order by id desc";
     if ($data=$mysqli->query($query)) {

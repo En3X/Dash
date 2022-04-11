@@ -22,7 +22,7 @@
                     Dashboard
                 </span>
             </div>
-            <div class="iconset">
+            <!-- <div class="iconset">
                 <i class="fa fa-pie-chart"></i>
                 <span>
                     Charts
@@ -33,23 +33,30 @@
                 <span>
                     User Reports
                 </span>
-            </div>
+            </div> -->
             <div onclick="window.location.href='./index.php?page=purchaselog'" class="iconset">
                 <i class="fa fa-info-circle"></i>
                 <span>
-                    Logs
+                    Purchase Logs
                 </span>
             </div>
-            <div class="iconset">
+            <div onclick="window.location.href='./index.php?page=shop'" class="iconset">
                 <i class="fa fa-money"></i>
                 <span>
                     Shopping District
                 </span>
+
             </div>
-            <div class="iconset">
+            <div onclick="window.location.href='./index.php?page=tournament'" class="iconset">
                 <i class="fa fa-gamepad"></i>
                 <span>
                     Tournaments
+                </span>
+            </div>
+            <div onclick="window.location.href='./index.php?page=articles'" class="iconset">
+                <i class="fa fa-newspaper-o"></i>
+                <span>
+                    Articles List
                 </span>
             </div>
             <div id="addArticle" class="iconset">

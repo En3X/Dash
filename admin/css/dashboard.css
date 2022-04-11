@@ -1,9 +1,9 @@
 .dashboard {
   width: 100%;
-  height: inherit;
 }
 
 .dashboard > .header {
+  width: 100%;
   font-size: 20px;
   color: whitesmoke;
   padding: 20px;
@@ -15,6 +15,7 @@
   display: flex;
   justify-content: space-between;
 }
+
 .card {
   color: whitesmoke;
   width: 250px;

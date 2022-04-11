@@ -64,5 +64,15 @@
                 throw new Exception("Sorry there was some error processing your request. We will try and fix it soon. Until then, please try using some other feature of our webappp.", 1);
             }
         }
+        public function hasJoinedTournament($conn,$tid){
+            $sql = "select * from tournamentmembers where tid=$tid and uid=$this->uid";
+            if ($data=$conn->query($sql)) {
+                if ($data->num_rows>0) {
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
     }
 ?>

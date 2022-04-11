@@ -2,6 +2,11 @@
     require '../db/connection.php';
     require './admin.php';
     require './services.php';
+    require '../entity/Tournament.php';
+    require '../entity/Article.php';
+    require '../entity/Item.php';
+
+
     $adminData;
     session_start();
     if (isset($_SESSION['admin_login_error'])) {
@@ -40,6 +45,12 @@
                 $page = $_GET['page'];
                 if ($page == "purchaselog") {
                     include "./partial/purchaselogs.php";
+                }else if ($page == "tournament") {
+                    include "./partial/tournament.php";
+                }else if ($page == "articles") {
+                    include "./partial/articleslist.php";
+                }else if ($page == "shop") {
+                    include "./partial/shop.php";
                 }
             }
         ?>

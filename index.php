@@ -165,28 +165,5 @@
 </html>
 
 <?php
-function getAllTournament($mysqli)
-{
-    $tournaments = array();
-    $query = "select * from tournament";
-    if ($data=$mysqli->query($query)) {
-        foreach ($data as $value) {
-            $tid = $value['tid'];
-            $gid = $value['gid'];
-            $uid = $value['uid'];
-            $name = $value['name'];
-            $dis = $value['description'];
-            $status = $value['status'];
-            $month = $value['month'];
-            $day = $value['day'];
-            $hour = $value['hour'];
-            $min = $value['min'];
-            $sec = $value['sec'];
-            $t = new Tournament($tid,$gid,$uid,$name,
-            $dis,$status,$month,$day,$hour,$min,$sec);
-            array_push($tournaments,$t);
-        }
-        return $tournaments;
-    }
-}
+
 ?>

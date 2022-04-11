@@ -3,3 +3,14 @@
 .p10 {
   padding: 10px;
 }
+.saveTournament {
+  margin-top: 20px;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  cursor: pointer;
+  background: linear-gradient(60deg, #f75c06, #c22fd1);
+}
+.shopheader {
+  width: 100%;
+}

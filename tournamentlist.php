@@ -6,50 +6,50 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
+    <head>
+        <link rel="shortcut icon" href="./img/logo.png" type="image/x-icon">
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List of tournament</title>
-    <link rel="stylesheet" href="./css/tournamentlist.css">
-</head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>List of tournament</title>
+        <link rel="stylesheet" href="./css/tournamentlist.css">
+    </head>
 
-<body>
-    <?php include './partials/nav.php' ?>
-    <main>
-        <section class="sidebar">
-            <?php include './partials/usercard.php'?>
+    <body>
+        <?php include './partials/nav.php' ?>
+        <main>
+            <section class="sidebar">
+                <?php include './partials/usercard.php'?>
 
-            <div class="card gamecard">
-                <div class="card-title">
-                    Recent Games
-                </div>
-                <div class="card-body">
-                    <?php
+                <div class="card gamecard">
+                    <div class="card-title">
+                        Recent Games
+                    </div>
+                    <div class="card-body">
+                        <?php
                     $games = getGames($conn);
                     foreach ($games as $game) {
                         ?>
-                    <div class="tab">
-                        <div class="gname kmedium">
-                            <?php echo $game->id.". ".$game->name?>
+                        <div class="tab">
+                            <div class="gname kmedium">
+                                <?php echo $game->id.". ".$game->name?>
+                            </div>
+                            <div class="dis kregular">
+                                <?php echo $game->dis ?>
+                            </div>
                         </div>
-                        <div class="dis kregular">
-                            <?php echo $game->dis ?>
-                        </div>
-                    </div>
-                    <?php
+                        <?php
                     }
                     ?>
+                    </div>
                 </div>
-            </div>
-            <div class="card tournamentcard">
-                <div class="card-title">
-                    Your Tournaments
-                </div>
-                <div class="card-body">
-                    <?php
+                <div class="card tournamentcard">
+                    <div class="card-title">
+                        Your Tournaments
+                    </div>
+                    <div class="card-body">
+                        <?php
                         $tournament = getTournaments($conn,$user->uid,5);
                         $count = 0;
                         foreach ($tournament as $t) {
@@ -57,76 +57,91 @@
                             echo " <div class='dis mt10 kmedium'>$count. $t</div>";
                         }
                     ?>
+                    </div>
                 </div>
-            </div>
 
-        </section>
-        <section class="maincontent">
-            <?php
+            </section>
+            <section class="maincontent">
+                <?php
                 $tournaments = getAllTournament($conn);
             ?>
-            <?php
+                <?php
                 foreach ($tournaments as $featured) {?>
-            <div class="card featuredcard">
-                <div class="textsection">
-                    <div class="tournamentstatus kmedium">
-                        <?php 
+                <div class="card featuredcard">
+                    <div class="textsection">
+                        <div class="tournamentstatus kmedium">
+                            <?php 
                             echo $featured->status." Tournament";
                         ?>
-                    </div>
-                    <div class="tournamentName mbold">
-                        <?php echo $featured->name?>
-                    </div>
-                    <div class="description mregular">
-                        <?php echo $featured->dis?>
-                    </div>
-                    <div class="tournamentDate">
-                        <div class="dateCapsule">
-                            <div id="day" class="cmain mbold">
-                                <?php echo $featured->day;?>
+                        </div>
+                        <div class="tournamentName mbold">
+                            <?php echo $featured->name?>
+                        </div>
+                        <div class="description mregular">
+                            <?php echo $featured->dis?>
+                        </div>
+                        <div class="tournamentDate">
+                            <div class="dateCapsule">
+                                <div id="day" class="cmain mbold">
+                                    <?php echo $featured->day;?>
+                                </div>
+                                <div id="month" class="csub mregular">
+                                    <?php echo $featured->month;?>
+                                </div>
                             </div>
-                            <div id="month" class="csub mregular">
-                                <?php echo $featured->month;?>
+                            <div class="dateCapsule">
+                                <div id="hour" class="cmain mbold">
+                                    <?php echo $featured->hour;?>
+                                </div>
+                                <div id="month" class="csub mregular">Hour</div>
+                            </div>
+                            <div class="dateCapsule">
+                                <div id="min" class="cmain mbold">
+                                    <?php echo $featured->min;?>
+                                </div>
+                                <div class="csub mregular">Min</div>
+                            </div>
+                            <div class="dateCapsule">
+                                <div id="sec" class="cmain mbold">
+                                    <?php echo $featured->sec;?>
+                                </div>
+                                <div class="csub mregular">Sec</div>
                             </div>
                         </div>
-                        <div class="dateCapsule">
-                            <div id="hour" class="cmain mbold">
-                                <?php echo $featured->hour;?>
-                            </div>
-                            <div id="month" class="csub mregular">Hour</div>
-                        </div>
-                        <div class="dateCapsule">
-                            <div id="min" class="cmain mbold">
-                                <?php echo $featured->min;?>
-                            </div>
-                            <div class="csub mregular">Min</div>
-                        </div>
-                        <div class="dateCapsule">
-                            <div id="sec" class="cmain mbold">
-                                <?php echo $featured->sec;?>
-                            </div>
-                            <div class="csub mregular">Sec</div>
-                        </div>
+                        <?php
+                            if ($user->hasJoinedTournament($conn,$featured->tid)) {
+                                ?>
+                        <button onclick="window.location.href='./tournamentdetail.php?id=<?php echo $featured->tid?>'"
+                            type="submit" id="host" class="joinedbtn kmedium">
+                            <i class="fa fa-check"></i>
+                            Joined
+                        </button>
+                        <?php
+                            }else{
+                                ?>
+                        <button onclick="window.location.href='./tournamentdetail.php?id=<?php echo $featured->tid?>'"
+                            id="host" class="saveTournament kmedium">
+                            Join Tournament
+                            <i class="fa fa-plus"></i>
+                        </button>
+                        <?php
+                            }
+                        ?>
                     </div>
-                    <button id="host" class="saveTournament kmedium">
-                        Join Tournament
-                        <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-                <div class="banner-img" style="
+                    <div class="banner-img" style="
                         background: url(<?php echo fetchBanner($conn,$featured)?>);
                          background-repeat: no-repeat;
                         background-size: 100%;
                 ">
+                    </div>
                 </div>
-            </div>
-            <?php
+                <?php
                 }
             ?>
 
-        </section>
-    </main>
-</body>
+            </section>
+        </main>
+    </body>
 
 </html>
 

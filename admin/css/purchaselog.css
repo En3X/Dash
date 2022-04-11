@@ -17,10 +17,10 @@
   background-color: var(--success);
 }
 tr {
-  background-color: var(--primary);
+  background-color: var(--success);
 }
 tr:not(:first-of-type) {
-  background-color: var(--danger);
+  background-color: var(--warning);
 }
 tr:last-of-type {
   background-color: var(--primary);
