@@ -3,8 +3,7 @@
     require './entity.php';
     require './services.php';
     session_start();
-    $tournament = "";
-    $featured = "";
+    $tournament;$featured;
     function idGiven(){
         global $conn;
         global $tournament;
@@ -15,6 +14,34 @@
             return true;
         }
         return false;
+    }
+    function isEnded($conn,$tournament){
+        $checkEnd = "Select * from tournamentwinner where tid=$tournament->tid";
+        if ($data = $conn->query($checkEnd)) {
+            if ($data->num_rows > 0) {
+                return true;
+            }else{
+                return false;
+            }
+        }else{
+            return false;
+        }
+    }
+?>
+
+<?php
+    if (isset($_POST['winner'])) {
+        if (idGiven()) {
+            if (!isEnded($conn,$tournament)) {
+                $changeStatus = "update tournament set ended=1 where tid=$tournament->tid";
+                if ($conn->query($changeStatus)) {
+                    $winner = $_POST['winner'];
+                    $winnerQuery = "Insert into tournamentwinner values($tournament->tid,$winner)";
+                    $conn->query($winnerQuery);
+                }
+            }
+        }
+        unset($_POST['winner']);
     }
 ?>
 <!DOCTYPE html>
@@ -145,14 +172,23 @@
                         <?php
                                 }
                             }else{
-                                ?>
-                        <button
-                            onclick="window.location.href='./db/droptournament.php?id=<?php echo $tournament->tid?>'"
-                            type="submit" id="host" class="saveTournament kmedium">
-                            <i class="fa fa-trash"></i>
-                            Drop Tournament
-                        </button>
+                                if (!isEnded($conn,$tournament)) {
+                                    ?>
+                        <div class="buttons">
+                            <button
+                                onclick="window.location.href='./db/droptournament.php?id=<?php echo $tournament->tid?>'"
+                                type="submit" id="host" class="saveTournament kmedium">
+                                Drop Tournament
+                            </button>
+                            <button onclick="showEndModal()" type="submit" id="host" class="saveTournament kmedium">
+                                End Tournament
+                            </button>
+                        </div>
                         <?php
+                                }else{
+                                   echo '<div class="card-title">Tournament Ended</div>';
+                                }
+                                
                             }
                         ?>
                     </div>
@@ -225,10 +261,57 @@
                 </div>
             </section>
         </main>
+        <div class="popup" id="endpopup">
+            <div class="popupwrapper">
+                <div class="popupheader kbold">
+                    <span>
+                        <span id="purchasestatus">
+                            End Tournament
+                        </span>
+                    </span>
+                    <i onclick="hideEndModal()" style="cursor:pointer" id="close-update-modal" class="fa fa-times"></i>
+                </div>
+                <div id="purchasemsg" class="popupbody kregular">
+                    You are about to end the tournament. Please select the winner of the tournament
+                </div>
+                <form action="#" method="post">
+                    <div class="popupbody searchbar kregular">
+                        <select class="winnerSelector kbold" name="winner">
+                            <option disabled> - Select Winner - </option>
+                            <?php
+                                $q = "Select * from tournamentmembers where tid=$tournament->tid";
+                                if ($data=$conn->query($q)) {
+                                    if ($data->num_rows > 0) {
+                                        while ($row=$data->fetch_assoc()) {
+                                            $userid = $row['uid'];
+                                            $name = $row['username'];
+                                            echo "
+                                                <option value = $userid>$name</option>
+                                            ";
+                                        }
+                                    }else{
+                                        echo "<option>No Tournament Members</option>";
+                                    }
+                                }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="popupbutton">
+                        <button type="submit" class="btn success kbold">
+                            Continue
+                        </button>
+                        <button onclick="hideEndModal()" type="button" id="cancel" class="btn secondary kbold">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
         <input type="hidden" id="tournamentId" value="<?php echo $tournament->tid?>">
         <input type="hidden" id="username" value="<?php echo $user->name?>">
     </body>
     <script src="./js/chat.js"></script>
+    <script src="./js/userpage.js"></script>
 
 </html>
 

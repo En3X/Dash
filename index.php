@@ -80,7 +80,8 @@
                         <?php
                             $ts = getAllTournament($conn);
                             $count = 0;
-                            foreach ($ts as $t) {
+                            if ($ts != null) {
+                                foreach ($ts as $t) {
                                 $count++;
                                ?>
                         <div class="row">
@@ -93,12 +94,15 @@
                             <span>
                                 <?php echo $t->day." ".$t->month.", ".$t->hour.":".$t->min.":".$t->sec;?>
                             </span>
-                            <span>0</span>
+                            <span>
+                                <?php echo getTotalTournamentMembers($conn,$t->tid)?>
+                            </span>
                             <span>
                                 <?php echo $t->status?>
                             </span>
                         </div>
                         <?php
+                            }
                             }
                         ?>
                     </div>

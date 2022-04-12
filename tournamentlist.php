@@ -197,8 +197,9 @@ function getAllTournament($mysqli)
             $hour = $value['hour'];
             $min = $value['min'];
             $sec = $value['sec'];
+            $end=$value['ended'];
             $t = new Tournament($tid,$gid,$uid,$name,
-            $dis,$status,$month,$day,$hour,$min,$sec);
+            $dis,$status,$month,$day,$hour,$min,$sec,$end);
             array_push($tournaments,$t);
         }
         return $tournaments;

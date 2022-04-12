@@ -92,3 +92,28 @@ main {
 .memberslist {
   height: 520px;
 }
+.buttons {
+  display: flex;
+}
+.buttons > button {
+  width: fit-content;
+  margin-right: 5px;
+  text-align: start;
+}
+.searchbar {
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--search-input);
+  display: flex;
+  justify-content: space-between;
+}
+.searchbar > select {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: white;
+}
+#endpopup {
+  display: none;
+}

@@ -43,6 +43,7 @@ function getPostData() {
     sec: secField.innerText,
     game: gameField.innerText,
     uid: userId.innerText,
+    ended: 0,
   };
   return data;
 }

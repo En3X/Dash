@@ -2,6 +2,7 @@
 if (isset($_SESSION['user'])) {
     $user = unserialize($_SESSION['user']);
     $user->refresh($conn);
+    $user->fetch_stat($conn);
 }else{
     header('location: ./about.php');
 }
@@ -42,7 +43,7 @@ if (isset($_SESSION['user'])) {
         </div>
     </div>
 
-    <div class="usersection">
+    <div onclick="window.location.href='./userpage.php'" class="usersection">
         <div class="pp">
             <img src="./img/default.png" alt="">
         </div>

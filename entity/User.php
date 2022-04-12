@@ -4,7 +4,7 @@
         public $name;
         public $email;
         public $password;
-        public $stat;
+        public $win,$loss,$host,$join;
         public $balance;
         function __construct($uid, $name, $email, $password,$balance){
             $this->uid = $uid;
@@ -12,19 +12,34 @@
             $this->name = $name;
             $this->password = $password;
             $this->balance = $balance;
-            $this->fetch_stat();
         }
 
-        public function fetch_stat()
-        {
-            /*
-                TODO: Some bunch of shitty sql to fetch stats from database
-            */
-            $won = 100;
-            $loss = 11;
-            $hosted = 5;
-            $this->stat = array('w'=>$won,'l'=>$loss,'h'=>$hosted);
+
+        public function fetch_stat($conn){
+            $winsql = "Select * from tournamentwinner where uid=$this->uid";
+            if ($winsql = $conn->query($winsql)) {
+                $this->win = $winsql->num_rows;
+            }else{
+                $this->win = 0;
+            }
+            $hostsql = "select * from tournament where uid=$this->uid";
+            if ($hostdata = $conn->query($hostsql)) {
+                $this->host = $hostdata->num_rows;
+            }else{
+                $this->host = 0;
+            }
+
+            $joinsql = "select * from tournamentmembers where uid=$this->uid";
+            if ($joindata = $conn->query($joinsql)) {
+                $this->join = $joindata->num_rows;
+            }else{
+                $this->join = 0;
+            }
+
+            $this->loss = $this->join - $this->win;;
         }
+
+
 
         public function refresh($conn){
             $q = "Select * from users where uid=$this->uid";
@@ -71,6 +86,21 @@
                     return true;
                 }else{
                     return false;
+                }
+            }
+        }
+
+        public function getTotalSpent($conn){
+            $sql = "select price from purchaselog where uid=$this->uid";
+            if ($data = $conn->query($sql)) {
+                if ($data->num_rows == 0) {
+                    return 0;
+                }else{
+                    $sum = 0;
+                    while ($row=$data->fetch_assoc()) {
+                        $sum += $row['price'];
+                    }
+                    return $sum;
                 }
             }
         }

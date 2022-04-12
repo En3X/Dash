@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="./css/usercard.css">
-<div class="card usercard">
+<div onclick="window.location.href='./userpage.php'" class="card usercard">
     <div class="profile">
         <div class="image">
             <img src="./img/default.png" alt="">

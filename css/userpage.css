@@ -1,0 +1,111 @@
+main {
+  min-height: 100%;
+}
+.sgroup {
+  margin-top: 5px;
+  display: grid;
+  grid-template-columns: 65% 25%;
+}
+.purchasecard {
+  overflow: hidden;
+  overflow-y: scroll;
+  height: 200px;
+}
+.insidecard {
+  margin-top: 30px;
+  background-color: #3d3943;
+  padding: 10px;
+  width: 25%;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.insidecard > .icon {
+  margin-right: 10px;
+
+  padding: 10px;
+  border-radius: 10px;
+  width: fit-content;
+  background: #2d2833;
+  color: #0fbd95;
+}
+.btn {
+  width: 50%;
+  height: 40px;
+  cursor: pointer;
+  border: none;
+}
+.success {
+  color: white;
+  background-color: var(--success);
+}
+.secondary {
+  border: 1px solid var(--border);
+  background: none;
+  color: whitesmoke;
+}
+.grid {
+  display: flex;
+  column-gap: 20px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.popup {
+  display: none;
+  z-index: 99999 !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.popupwrapper {
+  height: 35%;
+  width: 25%;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  color: white;
+  padding: 20px;
+  transform: translate(-50%, -50%);
+  background-color: #222;
+  text-align: justify;
+}
+.popupheader {
+  font-size: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.popupbody {
+  margin-top: 20px;
+}
+.popupbutton {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  column-gap: 20px;
+}
+.inputgroup {
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 5px;
+  background-color: var(--search-input);
+  display: flex;
+  justify-content: space-between;
+}
+.moneycard {
+  height: 100px;
+  align-items: center;
+  display: grid;
+}
+.inputgroup > input {
+  outline: none;
+  border: none;
+  background: transparent;
+  color: white;
+}
+.inputgroup > i {
+  color: #0fbd95;
+}

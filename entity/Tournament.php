@@ -2,8 +2,8 @@
     class Tournament
     {
         public $tid,$gid,$uid,$name,
-        $dis,$status,$month,$day,$hour,$min,$sec;
-        function __construct($tid,$gid,$uid,$name,$dis,$status,$month,$day,$hour,$min,$sec) {
+        $dis,$status,$month,$day,$hour,$min,$sec,$isEnded;
+        function __construct($tid,$gid,$uid,$name,$dis,$status,$month,$day,$hour,$min,$sec,$end) {
             $this->tid = $tid;
             $this->gid=$gid;
             $this->uid = $uid;
@@ -15,6 +15,8 @@
             $this->hour = $hour;
             $this->min=$min;
             $this->sec = $sec;
+            $this->isEnded = $end;
         }
+
     }
 ?>

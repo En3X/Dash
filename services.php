@@ -20,7 +20,7 @@
     function getAllTournament($mysqli)
 {
     $tournaments = array();
-    $query = "select * from tournament";
+    $query = "select * from tournament where ended=0";
     if ($data=$mysqli->query($query)) {
         foreach ($data as $value) {
             $tid = $value['tid'];
@@ -34,16 +34,26 @@
             $hour = $value['hour'];
             $min = $value['min'];
             $sec = $value['sec'];
+            $end = $value['ended'];
             $t = new Tournament($tid,$gid,$uid,$name,
-            $dis,$status,$month,$day,$hour,$min,$sec);
+            $dis,$status,$month,$day,$hour,$min,$sec,$end);
             array_push($tournaments,$t);
         }
         return $tournaments;
     }
 }
+
+function getTotalTournamentMembers($conn,$id){
+    $q = "Select * from tournamentmembers where tid=$id";
+    if ($data=$conn->query($q)) {
+        return $data->num_rows;
+    }else{
+        return 0;
+    }
+}
 function getTournaments($mysqli,$uid,$limit){
     $tournaments = array();
-    $query = "select name from tournament where uid=$uid limit $limit";
+    $query = "select name from tournament where uid=$uid and ended=0 limit $limit";
     if ($data=$mysqli->query($query)) {
         if ($data->num_rows <= 0) {
             return array('Host tournament to see them here');
@@ -71,12 +81,11 @@ function getTournamentById($mysqli,$tid){
                 $min = $value['min'];
                 $sec = $value['sec'];
                 $uid = $value['uid'];
+                $end = $value['ended'];
                 $t = new Tournament($tid,$gid,$uid,$name,$description,$status
-                ,$month,$day,$hour,$min,$sec);
+                ,$month,$day,$hour,$min,$sec,$end);
                 return $t;
             }
-        }else{
-            return "404";
         }
     }
 }
@@ -200,5 +209,24 @@ function createPurchaseLog($conn,$i,$u){
     }else{
         return false;
     }
+}
+function getFilteredPurchaseLog($conn,$uid){
+    $logs = array();
+    $sql = "select * from purchaselog where uid=$uid order by id desc";
+    if ($data = $conn->query($sql)) {
+        if ($data->num_rows > 0 ) {
+            while ($row = $data->fetch_assoc()) {
+                $itemname = $row['itemname'];
+                $price = $row['price'];
+                $log = "Purchased $itemname for $price";
+                array_push($logs,$log);
+            }
+        }else{
+            array_push($logs,"You have not made any purchase yet");
+        }
+    }else{
+        array_push($logs,"There was an error trying to fetch your request.");
+    }
+    return $logs;
 }
 ?>

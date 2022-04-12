@@ -1,7 +1,7 @@
 <?php
     $tournaments = getAllTournament($conn);
     if (count($tournaments) < 1) {
-        $featured = new Tournament(null,null,null,"No tournaments hosted yet","Please host a tournament to get featured tournament","404 Error",12,12,12,12,12);
+        $featured = new Tournament(null,null,null,"No tournaments hosted yet","Please host a tournament to get featured tournament","404 Error",12,12,12,12,12,0);
     }else{
         $featured = $tournaments[count($tournaments)-1];
     }
@@ -85,8 +85,7 @@
 </div>
 
 <?php
-    function fetchBanner($mysqli,$featured)
-    {
+    function fetchBanner($mysqli,$featured){
         $gid = $featured->gid;
         $query = "
             select logopath from games where gid=$gid

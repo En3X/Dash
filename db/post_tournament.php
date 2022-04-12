@@ -17,10 +17,10 @@
 
             // Query to insert the data
             $query = "INSERT into tournament(
-                gid,name,description,status,month,day,hour,min,sec,uid
+                gid,name,description,status,month,day,hour,min,sec,uid,ended
             ) values (
                 '$gid','$name','$des','$status','$month',
-                '$day','$hour','$min','$sec','$uid'
+                '$day','$hour','$min','$sec','$uid',0
             )";
 
             if ($mysqli->query($query)) {
