@@ -167,7 +167,7 @@ function getGames($conn)
 function getTournaments($mysqli,$uid,$limit)
 {
     $tournaments = array();
-    $query = "select name from tournament where uid=$uid limit $limit";
+    $query = "select name from tournament where uid=$uid and ended=0 limit $limit";
     if ($data=$mysqli->query($query)) {
         if ($data->num_rows <= 0) {
             return array('Host tournament to see them here');
@@ -183,7 +183,7 @@ function getTournaments($mysqli,$uid,$limit)
 function getAllTournament($mysqli)
 {
     $tournaments = array();
-    $query = "select * from tournament";
+    $query = "select * from tournament where ended=0";
     if ($data=$mysqli->query($query)) {
         foreach ($data as $value) {
             $tid = $value['tid'];

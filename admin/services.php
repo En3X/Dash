@@ -59,7 +59,7 @@ function getTournaments($mysqli){
             $sec = $value['sec'];
             $uid = $value['uid'];
             $t = new Tournament($tid,$gid,$uid,$name,$description,$status
-            ,$month,$day,$hour,$min,$sec);
+            ,$month,$day,$hour,$min,$sec,$value['ended']);
             array_push($tournaments,$t);
         }
         return $tournaments;
